@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>整屏滚动</title>
+</head>
+<STYle>
+    body{margin: 0;FONT-SIZE:70PX;color: white;text-align: center;}
+    .full{height: 100vh;width: 100%;}
+    .footer{height: 50vh;width: 100%;}
+</STYle>
+<body>
+    <div class="full" id='page1' style="background: darkorange">PAGE ONE</div>
+    <div class="full" id='page2'  style="background: salmon">PAGE TWO</div>
+    <div class="full" id='page3'  style="background: darkblue">PAGE THREE</div>
+    <div class="full" id='page4'  style="background: blueviolet">PAGE FOUR</div>
+    <div class="footer" style="background: darkorange">FOOTER ONE</div>
+    <div class="footer" style="background: darkcyan">FOOTER TWO</div>
+    <div class="footer" style="background: violet">FOOTTER THREE</div>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var scrollTop=0;
+            var start=true
+            var height=$('#page1').height()
+            function changestate(){
+                setTimeout(function(){start=true}, 700)
+            }
+
+            $('#page1').on('mousewheel',function(e){
+                if(start){
+                    start=false
+                    changestate()
+                    var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                        (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));              // firefox
+                    if (delta > 0) {
+                        $('html,body').animate({scrollTop: '0px'}, 500);
+                    } else if (delta < 0) {
+                        $('html,body').animate({scrollTop: height+'px'}, 500);
+                    }
+                }   
+            })
+            $('#page2').on('mousewheel',function(e){
+                if(start){
+                    start=false
+                    changestate();
+                    var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                        (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));              // firefox
+                    if (delta > 0) {
+                        $('html,body').animate({scrollTop:'0px'}, 500);
+                    } else if (delta < 0) {
+                        $('html,body').animate({scrollTop: height*2+'px'}, 500);
+                    }
+                }
+               
+            })
+            $('#page3').on('mousewheel',function(e){
+                if(start){
+                    start=false
+                    changestate();
+                    var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                        (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));              // firefox
+                    if (delta > 0) {
+                        $('html,body').animate({scrollTop:height*1+'px'}, 800);
+                    } else if (delta < 0) {
+                        $('html,body').animate({scrollTop: height*3+'px'}, 800);
+                    }
+                }
+            })
+            $('#page4').on('mousewheel',function(e){
+                if(start){
+                    start=false
+                    changestate();
+                    var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                        (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));              // firefox
+                    if (delta > 0) {
+                        $('html,body').animate({scrollTop:height*2+'px'}, 800);
+                    } else if (delta < 0) {
+                        $('html,body').animate({scrollTop: height*3.8+'px'}, 800);
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>
